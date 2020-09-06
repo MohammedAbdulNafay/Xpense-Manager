@@ -150,11 +150,6 @@ public class IncomeFragment extends Fragment
             protected void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int position, @NonNull final Data data)
             {
 
-                /*myViewHolder.setAmount(data.getAmount());
-                myViewHolder.setDate(data.getDate());
-                myViewHolder.setNote(data.getNote());
-                myViewHolder.setType(data.getType());*/
-
                 myViewHolder.setAmount(data.getAmount(), R.id.amount_txt_income);
                 myViewHolder.setDate(data.getDate(), R.id.date_txt_income);
                 myViewHolder.setNote(data.getNote(), R.id.note_txt_income);
@@ -172,7 +167,6 @@ public class IncomeFragment extends Fragment
                         updNote = data.getNote();
                         updType = data.getType();
 
-                        //updateDataItem();
                         DataHandler.updateDataItem(getActivity(), R.layout.update_data_item, R.id.amount_edt, R.id.type_edt, R.id.note_edt, R.id.btn_upd_update, R.id.btn_upd_delete, updAmount, updNote, updType, positionKey, mIncomeDatabase);
 
                     }
@@ -195,105 +189,4 @@ public class IncomeFragment extends Fragment
         adapter.startListening();
 
     }
-
-    /*public static class MyViewHolder extends RecyclerView.ViewHolder
-    {
-
-        View mView;
-
-        public MyViewHolder(@NonNull View itemView)
-        {
-            super(itemView);
-            mView = itemView;
-        }
-
-        public void setType(String type)
-        {
-            TextView mType = mView.findViewById(R.id.type_txt_income);
-            mType.setText(type);
-        }
-
-        public void setNote(String note)
-        {
-            TextView mNote = mView.findViewById(R.id.note_txt_income);
-            mNote.setText(note);
-        }
-
-        public void setDate(String date)
-        {
-            TextView mDate = mView.findViewById(R.id.date_txt_income);
-            mDate.setText(date);
-        }
-
-        public void setAmount(double amount)
-        {
-            TextView mAmount = mView.findViewById(R.id.amount_txt_income);
-
-            mAmount.setText(String.format("%.2f", amount));
-        }
-    }*/
-
-/*    private void updateDataItem() {
-
-        AlertDialog.Builder myDialog = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = LayoutInflater.from(getActivity());
-        View myView = inflater.inflate(R.layout.update_data_item, null);
-        myDialog.setView(myView);
-
-        editAmount = myView.findViewById(R.id.amount_edt);
-        editType = myView.findViewById(R.id.type_edt);
-        editNote = myView.findViewById(R.id.note_edt);
-
-        // set data updated
-
-        editAmount.setText(String.valueOf(updAmount));
-        editAmount.setSelection(String.valueOf(updAmount).length());
-
-        editNote.setText(updNote);
-        editNote.setSelection(updNote.length());
-
-        editType.setText(updType);
-        editType.setSelection(updType.length());
-
-        btnUpdate = myView.findViewById(R.id.btn_upd_update);
-        btnDelete = myView.findViewById(R.id.btn_upd_delete);
-
-        final AlertDialog dialog = myDialog.create();
-
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                updNote = editNote.getText().toString().trim();
-                updType = editType.getText().toString().trim();
-                updAmount = Double.parseDouble(editAmount.getText().toString().trim());
-
-                String mDate = DateFormat.getDateInstance().format(new Date());
-
-                Data data = new Data(updAmount, updType, updNote, positionKey, mDate);
-
-                mIncomeDatabase.child(positionKey).setValue(data);
-
-                dialog.dismiss();
-
-                Toast.makeText(getContext(), "Data updated!!", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                mIncomeDatabase.child(positionKey).removeValue();
-
-                dialog.dismiss();
-
-                Toast.makeText(getContext(), "Data deleted!!", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        dialog.show();
-    }*/
 }
